@@ -1,7 +1,7 @@
 import os
 import random
 import string
-from flask import Flask, request, redirect, jsonify
+from flask import Flask, request, redirect, jsonify, render_template
 from google.cloud import firestore
 
 app = Flask(__name__)
@@ -13,7 +13,7 @@ URL_COLLECTION = 'url_mappings'
 @app.route('/')
 # function to let us know if the API is running
 def home():
-    return 'URL Shortener API is running!'
+    return render_template('index.html')
 
 # takes a JSON body and generates an ID, saves the ID in firestone, and then return it as a short URL
 @app.route('/shorten', methods=['POST'])
@@ -28,7 +28,7 @@ def shorten_url():
         'long_url': long_url
     })
     
-    return jsonify({'short_url': f'https://your-project-id.a.run.app/{short_code}'}), 200
+    return jsonify({'short_url': request.host_url + short_code})
 
 @app.route('/<short_code>')
 # finds the shortened URL in firestone, if found, redirect to the matched long (original) link, else, return 404
@@ -39,3 +39,6 @@ def redirect_to_url(short_code):
     
     long_url = doc.to_dict()['long_url']
     return redirect(long_url)
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
