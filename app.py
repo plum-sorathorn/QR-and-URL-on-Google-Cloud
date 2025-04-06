@@ -1,10 +1,10 @@
 import os
 import random
 import string
-from flask import Flask, request, redirect, jsonify, render_template
+from flask import Flask, request, redirect, jsonify, send_from_directory
 from google.cloud import firestore
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', static_url_path='')
 db = firestore.Client()
 
 # Firestore collection where we store the short URL mappings
@@ -13,7 +13,7 @@ URL_COLLECTION = 'url_mappings'
 @app.route('/')
 # function to let us know if the API is running
 def home():
-    return render_template('index.html')
+    return send_from_directory('static', 'index.html')
 
 # takes a JSON body and generates an ID, saves the ID in firestone, and then return it as a short URL
 @app.route('/shorten', methods=['POST'])
