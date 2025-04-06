@@ -4,7 +4,7 @@ import string
 from flask import Flask, request, redirect, jsonify, send_from_directory
 from google.cloud import firestore
 
-app = Flask(__name__, static_folder='static', static_url_path='')
+app = Flask(__name__)
 db = firestore.Client()
 
 # Firestore collection where we store the short URL mappings
