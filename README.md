@@ -19,7 +19,8 @@ Visit the deployed site here:
 ## Project Structure
 ```
 . 
-├── app.py # Flask backend 
+├── app.py # Flask backend
+├── Dockerfile # This is optional, see Deployment
 ├── requirements.txt # Python dependencies 
 ├── static/ 
 │ ├── index.html # Frontend HTML 
@@ -32,10 +33,9 @@ Visit the deployed site here:
 ### Prerequisites
 
 - Python 3.7+
-- A Google Cloud project with billing enabled
-- Firestore enabled in **Native mode**
-- `gcloud` CLI installed and authenticated
-- You are in the correct project (check with `gcloud config get-value project`)
+- A Google Cloud project 
+- Google Cloud Firestore API
+- Install Google Cloud SDK
 
 ### Clone the Repository
 
@@ -50,9 +50,9 @@ Install Dependencies
 pip install -r requirements.txt
 ```
 
-### Deploy with Google Cloud Run
+### Deployment (without Docker)
 
-You can deploy the entire app (including building the Docker image) with a single command (done on Windows 10):
+You can deploy the entire app with a single command (done on Windows 10):
 
 ```
 gcloud run deploy url-shortener --source . --platform managed --region us-central1 --allow-unauthenticated
@@ -63,3 +63,25 @@ This command will:
 - Deploy it to Cloud Run
 - Make it publicly accessible
 After deployment, the terminal will display a live service URL — use this to access your app.
+
+### Deployment with Docker
+
+- Get your PROJECT_ID from your Google Cloud project
+- Install Docker Desktop, then run
+
+```
+docker build -t url-shortener .
+docker tag url-shortener gcr.io/[PROJECT_ID]/url-shortener
+docker push gcr.io/[PROJECT_ID]/url-shortener
+```
+*** NOTE: Make sure you've logged in on Google Cloud SDK and also authenticated Docker on it!
+
+- Then, deploy on Google Cloud as an image (change the region accordingly) :
+
+```
+gcloud run deploy url-shortener --image gcr.io/[PROJECT_ID]/url-shortener --platform managed --region us-central1 --allow-unauthenticated
+```
+
+### Video Demo
+
+![Video](videos/demo.mp4)
