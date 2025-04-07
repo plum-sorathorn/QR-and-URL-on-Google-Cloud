@@ -2,7 +2,7 @@
 
 A simple and responsive URL shortener built with Flask and hosted on Google Cloud Run. It allows users to shorten long URLs into short, shareable links, and automatically redirects them to the original destination.
 
-For now, no domain has been registered for this project so the "short-urls" are not so short due to Google Cloud's URLs
+For now, no domain has been registered for this project so the "short-urls" are not so short due to Google Cloud's default URLs
 
 ## Live Demo
 
