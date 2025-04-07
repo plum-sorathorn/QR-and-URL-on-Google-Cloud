@@ -27,7 +27,7 @@ Visit the deployed site here:
 └── README.md # Project documentation
 ```
 
-## Deployment Instructions
+## Getting Started
 
 ### Prerequisites
 
@@ -37,11 +37,26 @@ Visit the deployed site here:
 - `gcloud` CLI installed and authenticated
 - You are in the correct project (check with `gcloud config get-value project`)
 
+### Clone the Repository
+
+```bash
+git clone https://github.com/your-username/url-shortener.git
+cd url-shortener
+```
+
+Install Dependencies
+
+```
+pip install -r requirements.txt
+```
+
 ### Deploy with Google Cloud Run
 
 You can deploy the entire app (including building the Docker image) with a single command (done on Windows 10):
 
+```
 gcloud run deploy url-shortener --source . --platform managed --region us-central1 --allow-unauthenticated
+```
 
 This command will:
 - Package your app and build it using Cloud Build
