@@ -82,6 +82,6 @@ docker push gcr.io/[PROJECT_ID]/url-shortener
 gcloud run deploy url-shortener --image gcr.io/[PROJECT_ID]/url-shortener --platform managed --region us-central1 --allow-unauthenticated
 ```
 
-### Video Demo
+### Done! Now you should have this!
 
-![Video](videos/demo.mp4)
+![demo](gifs/demo.gif)
