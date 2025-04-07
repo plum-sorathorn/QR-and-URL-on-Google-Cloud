@@ -17,13 +17,15 @@ Visit the deployed site here:
 - Clean frontend built with Tailwind CSS
 
 ## Project Structure
-
-|- app.py # Flask-based backend
-|- static/
-|  |- script.js # Frontend JavaScript
-|  |- index.html # Web page
-|- requirements.txt # Python dependencies
-|- README.md
+```
+. 
+├── app.py # Flask backend 
+├── requirements.txt # Python dependencies 
+├── static/ 
+│ ├── index.html # Frontend HTML 
+│ └── script.js # Frontend JS 
+└── README.md # Project documentation
+```
 
 ## Deployment Instructions
 
