@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>URL Shortener</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      font-family: 'Courier New', monospace;
+      background-image: url('static/greenbg.jpg');
+      background-size: cover;
+      background-position: center center;
+      background-attachment: fixed;
+    }
+  </style>
 </head>
 <body class="flex justify-center items-center min-h-screen m-0">
   <div class="max-w-xl bg-white p-8 rounded-lg shadow-lg">
@@ -14,18 +24,18 @@
       <input
         type="url"
         id="longUrl"
-        placeholder="Enter your long URL"
+        placeholder="Enter your URL"
         required
         class="border p-2 rounded w-full"
       />
-      <button type="submit" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded">
+      <button type="submit" class="mt-4 bg-green-500 text-white py-2 px-4 rounded">
         Shorten URL
       </button>
     </form>
 
     <div id="result" class="result hidden mt-4">
       <p>Your shortened URL:</p>
-      <a id="shortUrlLink" href="#" target="_blank" class="text-blue-500"></a>
+      <a id="shortUrlLink" href="#" target="_blank" class="text-green-500"></a>
     </div>
 
     <div id="error" class="error hidden mt-4 text-red-500"></div>
