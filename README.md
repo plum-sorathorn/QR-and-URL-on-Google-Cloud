@@ -63,7 +63,7 @@ This command will:
 - Deploy it to Cloud Run
 - Make it publicly accessible
 
-After deployment, the terminal will display a live service URL — use this to access your app.
+Done! Your web app should now be deployed!
 
 ### Deployment with Docker
 
