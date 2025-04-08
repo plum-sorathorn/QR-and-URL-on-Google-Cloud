@@ -85,3 +85,8 @@ gcloud run deploy url-shortener --image gcr.io/[PROJECT_ID]/url-shortener --plat
 ### Done! Now you should have this!
 
 ![demo](gifs/demo.gif)
+
+### Future Improvements
+
+- QR Code Generation: When a user inputs a long URL, both a short URL and a corresponding QR code will be generated for easy sharing and access.
+- CI/CD Automation: Plans to automate the deployment process using CI/CD pipelines to streamline future updates and deployments.
