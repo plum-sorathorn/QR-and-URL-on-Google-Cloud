@@ -7,6 +7,7 @@ from google.cloud import firestore
 app = Flask(__name__, static_folder='webpage')
 db = firestore.Client()
 
+
 # Firestore collection where we store the short URL mappings
 URL_COLLECTION = 'url_mappings'
 
@@ -32,7 +33,8 @@ def shorten_url():
         # If the URL is not in the database, generate a new short code
         short_code = ''.join(random.choices(string.ascii_letters + string.digits, k=6))
         db.collection(URL_COLLECTION).document(short_code).set({
-            'long_url': long_url
+            'long_url': long_url,
+            'time_created': firestore.SERVER_TIMESTAMP
         })
     
     return jsonify({'short_url': request.host_url + short_code})
