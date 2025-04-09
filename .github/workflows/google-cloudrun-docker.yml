@@ -10,7 +10,7 @@ env:
   REGION: '${{ secrets.GCP_REGION }}' # TODO: update to your region
   SERVICE: '${{ secrets.SERVICE_NAME }}' # TODO: update to your service name
   JSON_KEY: '${{ secrets.GCP_SA_KEY }}'
-  REPOSITY: 'qr-url-repo'
+  REPOSITORY: 'qr-url-repo'
 
 jobs:
   deploy:
