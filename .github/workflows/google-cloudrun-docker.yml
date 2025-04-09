@@ -10,6 +10,7 @@ env:
   REGION: '${{ secrets.GCP_REGION }}' # TODO: update to your region
   SERVICE: '${{ secrets.SERVICE_NAME }}' # TODO: update to your service name
   JSON_KEY: '${{ secrets.GCP_SA_KEY }}'
+  WORKLOAD_ID: '${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}'
 
 jobs:
   deploy:
@@ -31,7 +32,7 @@ jobs:
       - name: 'Authenticate with Google Cloud'
         uses: 'google-github-actions/auth@v2'
         with:
-          service_account: 'github-actions@${{ env.PROJECT_ID }}.iam.gserviceaccount.com'
+          workload_identity_provider: 'projects/${{ env.PROJECT_ID }}/locations/global/workloadIdentityPools/${{ env.WORKLOAD_ID }}/providers/${{ env.WORKLOAD_ID }}'
 
       - name: 'Push Docker image'
         run: |
