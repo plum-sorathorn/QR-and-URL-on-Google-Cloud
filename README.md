@@ -41,7 +41,7 @@ Visit the deployed site here:
 
 ```bash
 git clone https://github.com/plum-sorathorn/QR-and-URL-on-Google-Cloud.git
-cd url-shortener
+cd QR-and-URL-on-Google-Cloud
 ```
 
 Install Dependencies
@@ -72,7 +72,7 @@ Done! Your web app should now be deployed!
 
 ```
 docker build -t qr-generator-and-url-shortener .
-docker tag qr-generator-and-url-shortener gcr.io/[PROJECT_ID]/url-shortener
+docker tag qr-generator-and-url-shortener gcr.io/[PROJECT_ID]/qr-generator-and-url-shortener
 docker push gcr.io/[PROJECT_ID]/qr-generator-and-url-shortener
 ```
 *** NOTE: Make sure you've logged in on Google Cloud SDK and also authenticated Docker on it!
@@ -80,7 +80,7 @@ docker push gcr.io/[PROJECT_ID]/qr-generator-and-url-shortener
 - Then, deploy on Google Cloud as an image (change the region accordingly) :
 
 ```
-gcloud run deploy qr-generator-and-url-shortener --image gcr.io/[PROJECT_ID]/url-shortener --platform managed --region us-central1 --allow-unauthenticated
+gcloud run deploy qr-generator-and-url-shortener --image gcr.io/[PROJECT_ID]/qr-generator-and-url-shortener --platform managed --region us-central1 --allow-unauthenticated
 ```
 
 ### Done! Now you should have this!
