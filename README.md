@@ -1,6 +1,6 @@
-# URL Shortener
+# QR Generator and URL Shortener on Google Cloud
 
-A simple and responsive URL shortener built with Flask and hosted on Google Cloud Run. It allows users to shorten long URLs into short, shareable links, and automatically redirects them to the original destination.
+A lightweight, responsive URL shortening service built with Flask, deployed on Google Cloud Run, and uses Firestore for data storage. Converts long URLs both QR codes and short links that automatically redirect to the original destination.
 
 For now, no domain has been registered for this project so the "short-urls" are not so short due to Google Cloud's default URLs
 
@@ -86,8 +86,3 @@ gcloud run deploy qr-generator-and-url-shortener --image gcr.io/[PROJECT_ID]/qr-
 ### Done! Now you should have this!
 
 ![demo](gifs/demo.gif)
-
-### Future Improvements
-
-- QR Code Generation: When a user inputs a long URL, both a short URL and a corresponding QR code will be generated for easy sharing and access.
-- CI/CD Automation: Plans to automate the deployment process using CI/CD pipelines to streamline future updates and deployments.
