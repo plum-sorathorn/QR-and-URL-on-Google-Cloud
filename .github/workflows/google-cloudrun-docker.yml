@@ -27,9 +27,11 @@ jobs:
         run: |
           docker tag qr-generator-and-url-shortener gcr.io/${{ env.PROJECT_ID }}/qr-generator-and-url-shortener
 
-      - name: 'Configure Docker to use Google Cloud Artifact Registry'
-        run: |
-          sudo gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://us-central1-docker.pkg.dev
+     # Authenticate using Workload Identity
+      - name: 'Authenticate with Google Cloud'
+        uses: 'google-github-actions/auth@v2'
+        with:
+          service_account: 'github-actions@${{ env.PROJECT_ID }}.iam.gserviceaccount.com'
 
       - name: 'Push Docker image'
         run: |
