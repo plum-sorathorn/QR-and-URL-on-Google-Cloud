@@ -26,7 +26,7 @@ Visit the deployed site here:
 │ ├── index.html # Frontend HTML 
 │ └── script.js # Frontend JS
 ├──.github/workflows
-│ ├── google-cloudrun-docker.yml
+│ ├── google-cloudrun-docker.yml # CI/CD Pipelining
 └── README.md # Project documentation
 ```
 
