@@ -19,24 +19,29 @@ jobs:
       - name: 'Checkout Code'
         uses: 'actions/checkout@v2'
 
-      - name: 'Build Docker image'
-        run: |
-          docker build -t qr-generator-and-url-shortener .
-          
-      - name: 'Tag Docker image'
-        run: |
-          docker tag qr-generator-and-url-shortener gcr.io/${{ env.PROJECT_ID }}/qr-generator-and-url-shortener
-
-     # Authenticate using Workload Identity
-      - name: 'Authenticate with Google Cloud'
-        uses: 'google-github-actions/auth@v2'
+      # Install gcloud SDK and authenticate
+      - name: 'Set up Google Cloud SDK'
+        uses: google-github-actions/setup-gcloud@v1
         with:
-          credentials_json: '${{ env.JSON_KEY }}'
+          project_id: ${{ env.PROJECT_ID }}
+          service_account_key: ${{ env.JSON_KEY }}
+          export_default_credentials: true
+
+      # Allow Docker to use GCP credentials
+      - name: 'Configure Docker'
+        run: gcloud auth configure-docker gcr.io --quiet
+
+      # Build, tag, and push the Docker image
+      - name: 'Build Docker image'
+        run: docker build -t qr-generator-and-url-shortener .
+
+      - name: 'Tag Docker image'
+        run: docker tag qr-generator-and-url-shortener gcr.io/${{ env.PROJECT_ID }}/qr-generator-and-url-shortener
 
       - name: 'Push Docker image'
-        run: |
-          docker push gcr.io/${{ env.PROJECT_ID }}/qr-generator-and-url-shortener
+        run: docker push gcr.io/${{ env.PROJECT_ID }}/qr-generator-and-url-shortener
 
+      # Deploy to Cloud Run
       - name: 'Deploy to Cloud Run'
         run: |
           gcloud run deploy ${{ env.SERVICE }} \
