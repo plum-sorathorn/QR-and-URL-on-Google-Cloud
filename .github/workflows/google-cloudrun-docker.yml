@@ -60,7 +60,10 @@ jobs:
         name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@f112390a2df9932162083945e46d439060d66ec2' # google-github-actions/auth@v2
         with:
+          token_format: 'access_token'
+          audience: 'https://github.com/plum-sorathorn/QR-and-URL-on-Google-Cloud'
           workload_identity_provider: '${{ env.WORKLOAD_IDENTITY_PROVIDER }}'
+          service_account: 'github-actions@crack-audio-456014-k5.iam.gserviceaccount.com'
 
       # BEGIN - Docker auth and build
       #
