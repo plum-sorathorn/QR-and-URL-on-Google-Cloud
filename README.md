@@ -40,7 +40,7 @@ Visit the deployed site here:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/url-shortener.git
+git clone https://github.com/plum-sorathorn/QR-and-URL-on-Google-Cloud.git
 cd url-shortener
 ```
 
@@ -55,7 +55,7 @@ pip install -r requirements.txt
 You can deploy the entire app with a single command (done on Windows 10):
 
 ```
-gcloud run deploy url-shortener --source . --platform managed --region us-central1 --allow-unauthenticated
+gcloud run deploy qr-generator-and-url-shortener --source . --platform managed --region us-central1 --allow-unauthenticated
 ```
 
 This command will:
@@ -71,16 +71,16 @@ Done! Your web app should now be deployed!
 - Install Docker Desktop, then run
 
 ```
-docker build -t url-shortener .
-docker tag url-shortener gcr.io/[PROJECT_ID]/url-shortener
-docker push gcr.io/[PROJECT_ID]/url-shortener
+docker build -t qr-generator-and-url-shortener .
+docker tag qr-generator-and-url-shortener gcr.io/[PROJECT_ID]/url-shortener
+docker push gcr.io/[PROJECT_ID]/qr-generator-and-url-shortener
 ```
 *** NOTE: Make sure you've logged in on Google Cloud SDK and also authenticated Docker on it!
 
 - Then, deploy on Google Cloud as an image (change the region accordingly) :
 
 ```
-gcloud run deploy url-shortener --image gcr.io/[PROJECT_ID]/url-shortener --platform managed --region us-central1 --allow-unauthenticated
+gcloud run deploy qr-generator-and-url-shortener --image gcr.io/[PROJECT_ID]/url-shortener --platform managed --region us-central1 --allow-unauthenticated
 ```
 
 ### Done! Now you should have this!
