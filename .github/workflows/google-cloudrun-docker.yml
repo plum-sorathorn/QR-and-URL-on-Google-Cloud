@@ -53,4 +53,4 @@ jobs:
           service: ${{ env.SERVICE }}
           image: ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/qr-generator-and-url-shortener:latest
           region: ${{ env.REGION }}
-          allow_unauthenticated: true
+          flags: "--allow-unauthenticated"
