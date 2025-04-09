@@ -4,6 +4,7 @@ const resultDiv = document.getElementById('result');
 const shortUrlLink = document.getElementById('shortUrlLink');
 const errorDiv = document.getElementById('error');
 
+// POST to shorten to retrieve qr and url
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   resultDiv.classList.add('hidden');
