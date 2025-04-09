@@ -18,11 +18,6 @@ jobs:
     steps:
       - name: 'Checkout Code'
         uses: 'actions/checkout@v2'
-        
-      - name: "Authenticate with Google Cloud"
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: ${{ env.JSON_KEY }}
 
       - name: 'Build Docker image'
         run: |
@@ -34,7 +29,7 @@ jobs:
 
       - name: 'Configure Docker to use Google Cloud Artifact Registry'
         run: |
-          gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://us-central1-docker.pkg.dev
+          sudo gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://us-central1-docker.pkg.dev
 
       - name: 'Push Docker image'
         run: |
