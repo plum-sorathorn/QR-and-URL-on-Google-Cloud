@@ -9,6 +9,7 @@ env:
   PROJECT_ID: '${{ secrets.GCP_PROJECT }}' # TODO: update to your Google Cloud project ID
   REGION: '${{ secrets.GCP_REGION }}' # TODO: update to your region
   SERVICE: '${{ secrets.SERVICE_NAME }}' # TODO: update to your service name
+  JSON_KEY: '${{ secrets.GCP_SA_KEY }}'
 
 jobs:
   deploy:
@@ -22,7 +23,7 @@ jobs:
         uses: 'google-github-actions/setup-gcloud@v2'
         with:
           project_id: ${{ env.PROJECT_ID }}
-          credentials_json: ${{ secrets.GCP_CREDENTIALS_JSON }}
+          credentials_json: ${{ env.JSON_KEY }}
 
       - name: 'Build Docker image'
         run: |
