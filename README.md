@@ -24,7 +24,9 @@ Visit the deployed site here:
 ├── requirements.txt # Python dependencies 
 ├── static/ 
 │ ├── index.html # Frontend HTML 
-│ └── script.js # Frontend JS 
+│ └── script.js # Frontend JS
+├──.github/workflows
+│ ├── google-cloudrun-docker.yml
 └── README.md # Project documentation
 ```
 
