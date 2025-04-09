@@ -11,7 +11,7 @@ Visit the deployed site here:
 
 ## Features
 
-- Shorten long URLs with a random 6-character code
+- Generate a QR codes and shorten long URLs with a random 6-character code
 - Automatic redirection from short to long URLs
 - Firestore-backed persistence
 - Clean frontend built with Tailwind CSS
