@@ -38,7 +38,7 @@ env:
   PROJECT_ID: 'crack-audio-456014-k5' # TODO: update to your Google Cloud project ID
   REGION: 'us-central1' # TODO: update to your region
   SERVICE: 'QR-Generator-and-URL-Shortener' # TODO: update to your service name
-  WORKLOAD_IDENTITY_PROVIDER: 'projects/crack-audio-456014-k5/locations/global/workloadIdentityPools/github-pool/providers/github' # TODO: update to your workload identity provider
+  WORKLOAD_IDENTITY_PROVIDER: 'projects/880303141262/locations/global/workloadIdentityPools/github-pool/providers/github' # TODO: update to your workload identity provider
 
 jobs:
   deploy:
