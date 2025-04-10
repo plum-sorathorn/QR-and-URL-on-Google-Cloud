@@ -1,6 +1,8 @@
 # QR Generator and URL Shortener with CI/CD on Google Cloud
 
-A lightweight, responsive URL shortening service built with Flask, deployed on Google Cloud Run, and uses Firestore for data storage. Converts long URLs both QR codes and short links that automatically redirect to the original destination.
+A lightweight, responsive QR code generator and URL shortening service built with Flask and deployed on Google Cloud Run. 
+It uses both Google Cloud Storage for storing QR images and Firestore to store URLs.
+Functioanlly, it converts long URLs to both QR codes and short links that automatically redirect to the original destination.
 
 For now, no domain has been registered for this project so the "short-urls" are not so short due to Google Cloud's default URLs
 
@@ -11,9 +13,10 @@ Visit the deployed site here:
 
 ## Features
 
-- Generate a QR codes and shorten long URLs with a random 6-character code
-- Automatic redirection from short to long URLs
-- Firestore-backed persistence
+- Generate a QR codes from long URLs
+- "shorten" URLs with a random 6-character code
+- Automatic redirection
+- Firestore-backed and Google Cloud Storage backed persistence
 - Clean frontend built with Tailwind CSS
 
 ## Project Structure
@@ -26,7 +29,7 @@ Visit the deployed site here:
 │ ├── index.html # Frontend HTML 
 │ └── script.js # Frontend JS
 ├──.github/workflows
-│ ├── google-cloudrun-docker.yml # CI/CD Pipelining
+│ ├── google-cloudrun-docker.yml # CI/CD Pipelining via Github Actions
 └── README.md # Project documentation
 ```
 
@@ -37,7 +40,8 @@ Visit the deployed site here:
 - Python 3.7+
 - A Google Cloud project 
 - Google Cloud Firestore API
-- Install Google Cloud SDK
+- Google Cloud Storage
+- Google Cloud SDK (for desktop)
 
 ### Clone the Repository
 
@@ -54,7 +58,7 @@ pip install -r requirements.txt
 
 ### Deployment (without Docker)
 
-You can deploy the entire app with a single command (done on Windows 10):
+You can deploy the entire app with a single command (this command is for Windows):
 
 ```
 gcloud run deploy qr-generator-and-url-shortener --source . --platform managed --region us-central1 --allow-unauthenticated
@@ -64,6 +68,8 @@ This command will:
 - Package your app and build it using Cloud Build
 - Deploy it to Cloud Run
 - Make it publicly accessible
+
+Remember to change the region accordingly
 
 Done! Your web app should now be deployed!
 
