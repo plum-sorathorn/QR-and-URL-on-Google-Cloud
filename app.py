@@ -1,9 +1,8 @@
 import os
 import random
 import string
-import base64
 from io import BytesIO
-from flask import Flask, request, redirect, jsonify, send_file, send_from_directory
+from flask import Flask, request, redirect, jsonify, send_from_directory
 from google.cloud import firestore, storage
 import qrcode
 
@@ -83,7 +82,7 @@ def generate_url_and_qr():
     img_data = generate_qr_code(long_url)
 
     # Upload to GCS
-    qr_url = upload_qr(short_code, img_data, bucket_name="your-bucket-name")
+    qr_url = upload_qr(short_code, img_data, bucket_name=GCS_BUCKET_NAME)
 
     # Save the QR URL to Firestore
     firestore_database.collection(URL_COLLECTION).document(short_code).update({
