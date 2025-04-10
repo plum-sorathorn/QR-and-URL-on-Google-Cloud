@@ -1,4 +1,4 @@
-# QR Generator and URL Shortener on Google Cloud
+# QR Generator and URL Shortener with CI/CD on Google Cloud
 
 A lightweight, responsive URL shortening service built with Flask, deployed on Google Cloud Run, and uses Firestore for data storage. Converts long URLs both QR codes and short links that automatically redirect to the original destination.
 
@@ -88,3 +88,20 @@ gcloud run deploy qr-generator-and-url-shortener --image gcr.io/[PROJECT_ID]/qr-
 ### Done! Now you should have this!
 
 ![demo](gifs/demo.gif)
+
+## CI/CD Pipeline (Optional)
+
+This project uses GitHub Actions for continuous integration and continuous deployment (CI/CD). Every time a change is pushed to the `main` branch, the pipeline automatically builds the Docker image, pushes it to Google Cloud Artifact Registry, and deploys it to Google Cloud Run.
+
+1. Set up the necessary service accounts for Github on Google CLoud
+2. Generate a key and copy to contents into the repository's secrets
+3. Go to Github Actions and configure a Google Cloud Run workflow
+
+The workflow/pipeline is configured in the [`.github/workflows/google-cloudrun-docker.yml`](.github/workflows/google-cloudrun-docker.yml) file and executes these steps:
+
+1. **Authenticate to Google Cloud**: Uses a service account key to authenticate to Google Cloud.
+2. **Build Docker Image**: Builds the application into a Docker image.
+3. **Tag Docker Image**: Tags the Docker image with the appropriate project and repository information.
+4. **Push Docker Image**: Pushes the Docker image to Google Cloud Artifact Registry.
+5. **Deploy to Cloud Run**: Deploys the latest image to Google Cloud Run with public access.
+

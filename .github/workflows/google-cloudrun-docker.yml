@@ -10,6 +10,7 @@ env:
   REGION: '${{ secrets.GCP_REGION }}' # TODO: update to your region
   SERVICE: '${{ secrets.SERVICE_NAME }}' # TODO: update to your service name
   JSON_KEY: '${{ secrets.GCP_SA_KEY }}'
+  REPOSITORY: 'qr-url-repo'
 
 jobs:
   deploy:
@@ -18,32 +19,38 @@ jobs:
     steps:
       - name: 'Checkout Code'
         uses: 'actions/checkout@v2'
-        
-      - name: "Authenticate with Google Cloud"
+
+      # Authenticate to Google Cloud
+      - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
         with:
-          credentials_json: ${{ env.JSON_KEY }}
+          credentials_json: "${{ env.JSON_KEY }}"
 
-      - name: 'Build Docker image'
+      # Configure Docker to use Google Cloud credentials
+      - name: Set up Docker
+        run: |
+          gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
+
+      # Build and tag the image
+      - name: Build Docker image
         run: |
           docker build -t qr-generator-and-url-shortener .
-          
-      - name: 'Tag Docker image'
-        run: |
-          docker tag qr-generator-and-url-shortener gcr.io/${{ env.PROJECT_ID }}/qr-generator-and-url-shortener
 
-      - name: 'Configure Docker to use Google Cloud Artifact Registry'
+      - name: Tag Docker image
         run: |
-          gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://us-central1-docker.pkg.dev
+          docker tag qr-generator-and-url-shortener \
+            ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/qr-generator-and-url-shortener:latest
 
-      - name: 'Push Docker image'
+      # Push to Artifact Registry
+      - name: Push Docker image
         run: |
-          docker push gcr.io/${{ env.PROJECT_ID }}/qr-generator-and-url-shortener
+          docker push ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/qr-generator-and-url-shortener:latest
 
-      - name: 'Deploy to Cloud Run'
-        run: |
-          gcloud run deploy ${{ env.SERVICE }} \
-            --image gcr.io/${{ env.PROJECT_ID }}/qr-generator-and-url-shortener \
-            --platform managed \
-            --region ${{ env.REGION }} \
-            --allow-unauthenticated
+      # Deploy to Cloud Run
+      - name: Deploy to Cloud Run
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: ${{ env.SERVICE }}
+          image: ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/qr-generator-and-url-shortener:latest
+          region: ${{ env.REGION }}
+          flags: "--allow-unauthenticated"
