@@ -64,9 +64,6 @@ def upload_qr(short_code, img_data, bucket_name="GCS_BUCKET_NAME"):
     # Upload the image data
     data.upload_from_string(img_data, content_type='image/png')
     
-    # Make it public
-    data.make_public()
-    
     return data.public_url
 
 # POST endpoint: shorten + generate QR
