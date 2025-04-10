@@ -4,8 +4,6 @@ A lightweight, responsive QR code generator and URL shortening service built wit
 It uses both Google Cloud Storage for storing QR images and Firestore to store URLs.
 Functioanlly, it converts long URLs to both QR codes and short links that automatically redirect to the original destination.
 
-For now, no domain has been registered for this project so the "short-urls" are not so short due to Google Cloud's default URLs
-
 ## Live Demo
 
 Visit the deployed site here:  
