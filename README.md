@@ -9,7 +9,7 @@ For now, no domain has been registered for this project so the "short-urls" are 
 ## Live Demo
 
 Visit the deployed site here:  
-**[https://qr-generator-and-url-shortener-880303141262.us-central1.run.app](https://qr-generator-and-url-shortener-880303141262.us-central1.run.app)**
+**[https://qr.splum.org/](https://qr.splum.org/)**
 
 ## Features
 
