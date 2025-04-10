@@ -28,7 +28,7 @@
         required
         class="border p-2 rounded w-full"
       />
-      <button type="submit" class="mt-4 text-white py-2 px-4 rounded" style="background-color: #82ffac;">
+      <button type="submit" class="mt-4 text-white py-2 px-4 rounded" style="background-color: #52a76e;">
         Create QR and Shorten!
       </button>
     </form>
@@ -36,6 +36,8 @@
     <div id="result" class="result hidden mt-4">
       <p>Your shortened URL:</p>
       <a id="shortUrlLink" href="#" target="_blank" class="text-green-500"></a>
+      <p>QR Code:</p>
+      <img id="qrImage" class="hidden" alt="QR Code" style="max-width: 200px;" />
     </div>
 
     <div id="error" class="error hidden mt-4 text-red-500"></div>
