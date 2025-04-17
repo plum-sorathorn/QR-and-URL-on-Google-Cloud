@@ -12,7 +12,7 @@ Visit the deployed site here:
 ## Features
 
 - Generate a QR codes from long URLs
-- "shorten" URLs with a random 6-character code
+- shorten URLs with a random 6-character code
 - Automatic redirection
 - Firestore-backed and Google Cloud Storage backed persistence
 - Clean frontend built with Tailwind CSS
