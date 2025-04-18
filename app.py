@@ -34,7 +34,7 @@ def create_short_url(long_url, host_url):
             'time_created': firestore.SERVER_TIMESTAMP
         })
 
-    short_url = host_url + short_code
+    short_url = "https://" + request.host.split(':')[0] + "/" + short_code
     return short_url, short_code
 
 # function to generate a QR code from a URL
